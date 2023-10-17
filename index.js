@@ -13,6 +13,11 @@ app.get('/vod', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'vod.html'));
 });
 
+app.get('/vod/v1', (req, res) => {
+    const videoPath = './videos/v1.mp4'
+    res.sendFile(videoPath, {root: __dirname })
+})
+
 app.get('/live', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'live.html'));
 });

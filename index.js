@@ -14,7 +14,7 @@ app.get('/vod', (req, res) => {
 });
 
 app.get('/vod/v1', (req, res) => {
-    const videoPath = './videos/v1.mp4'
+    const videoPath = './media/videos/v1.mp4'
     res.sendFile(videoPath, {root: __dirname })
 })
 

@@ -1,3 +1,4 @@
 /node_modules/
-/media/videos/v1.mp4
-/media/images/i1.jpg
+/media/*
+!/media/videos/.gitkeep
+!/media/images/.gitkeep

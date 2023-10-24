@@ -18,6 +18,11 @@ app.get('/vod/v1', (req, res) => {
     res.sendFile(videoPath, {root: __dirname })
 })
 
+app.get('/vod/i1', (req, res) => {
+    const videoPath = './media/images/i1.jpg'
+    res.sendFile(videoPath, {root: __dirname })
+})
+
 app.get('/live', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'live.html'));
 });

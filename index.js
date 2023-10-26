@@ -5,10 +5,10 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const { spawn } = require('child_process');
+/*const { spawn } = require('child_process');
 const ffmpeg = spawn('ffmpeg', [
     '-f', 'dshow', // Fuente de video en Windows
-    '-i', 'video="13d3:56b2"', // Especifica la fuente de video (puede variar)
+    //'-i', 'video="13d3:56b2"', // Especifica la fuente de video (puede variar)
     // '-i', 'video="OBS Virtual Camera"', // Especifica la fuente de video (puede variar)
     '-c:v', 'libx264', // Codec de video
     '-preset', 'ultrafast', // Opciones de codificación
@@ -27,7 +27,7 @@ ffmpeg.stderr.on('data', (data) => {
 
 ffmpeg.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
-});
+});*/
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -49,6 +49,10 @@ app.get('/vod/i1', (req, res) => {
 
 app.get('/live', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'live.html'));
+});
+
+app.get('/adaptive', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'adaptive.html'));
 });
 
 app.listen(port, () => {

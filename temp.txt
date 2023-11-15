@@ -1,0 +1,2 @@
+URL -> rtmp://localhost:1935/live
+KEY -> stream1

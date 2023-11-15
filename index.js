@@ -55,6 +55,11 @@ app.get('/adaptive', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'adaptive.html'));
 });
 
+app.get('/adaptative/v1', (req, res) => {
+    const videoPath = './media/dash/out.mpd'
+    res.sendFile(videoPath, { root: __dirname })
+})
+
 app.listen(port, () => {
     console.log(`La aplicación está escuchando en http://localhost:${port}`);
 });

@@ -5,36 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VoD</title>
     <link href="https://vjs.zencdn.net/8.6.0/video-js.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Cambio de fuente */
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #333; /* Cambio de color de texto */
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        video {
+            margin-top: 10px;
+        }
+
+        #backButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
 </head>
 <body>
+    <button id="backButton" onclick="goBack()">Back</button>
+    
     <h1>Video On Demand</h1>
 
-    <h2>HTML5</h2>
-    <video width="640" height="360" controls>
-        <source src="/vod/v1" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
+    <div class="video-container">
+        <h2>HTML5</h2>
+        <video width="640" height="360" controls>
+            <source src="/vod/v1" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    </div>
 
-    <h2>Video.js</h2>
-    <video
-    id="my-video"
-    class="video-js"
-    controls
-    preload="auto"
-    width="640"
-    height="360"
-    poster="/vod/i1"
-    data-setup="{}">
+    <div class="video-container">
+        <h2>Video.js</h2>
+        <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="360"
+        poster="/vod/i1"
+        data-setup="{}">
 
-    <source src="/vod/v1" type="video/mp4" />
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="https://videojs.com/html5-video-support/" target="_blank"
-        >supports HTML5 video</a>
-    </p>
-  </video>
-  <script src="https://vjs.zencdn.net/8.6.0/video.min.js"></script>
+        <source src="/vod/v1" type="video/mp4" />
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a>
+        </p>
+      </video>
+    </div>
 
+    <script src="https://vjs.zencdn.net/8.6.0/video.min.js"></script>
+    <script>
+        function goBack() {
+          window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>

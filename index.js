@@ -51,7 +51,7 @@ app.get('/live', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'live.html'));
 });
 
-app.get('/adaptive', (req, res) => {
+app.get('/adaptative', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'adaptive.html'));
 });
 
@@ -59,6 +59,13 @@ app.get('/adaptative/v1', (req, res) => {
     const videoPath = './media/dash/out.mpd'
     res.sendFile(videoPath, { root: __dirname })
 })
+
+app.get('/adaptative/:segment', (req, res) => {
+    const segmentNumber = req.params.segment;
+    const segmentPath = `./media/dash/${segmentNumber}`;
+    
+    res.sendFile(segmentPath, { root: __dirname });
+});
 
 app.listen(port, () => {
     console.log(`La aplicación está escuchando en http://localhost:${port}`);

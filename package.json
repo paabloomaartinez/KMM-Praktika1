@@ -14,6 +14,7 @@
     "dashjs": "^4.0.0-npm",
     "express": "^4.18.2",
     "ffmpeg": "^0.0.4",
+    "hls-server": "^1.5.0",
     "nodemon": "^3.0.1"
   },
   "devDependencies": {

@@ -2,3 +2,4 @@
 /media/*
 !/media/videos/.gitkeep
 !/media/images/.gitkeep
+!/media/dash/.gitkeep

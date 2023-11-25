@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Live Stream</title>
-    <!-- Incluir la biblioteca flv.js -->
+    Incluir la biblioteca flv.js
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
   </head>
   <body>
-    <!-- Elemento de video -->
+    Elemento de video
     <video id="my-video" controls width="640" height="360"></video>
 
-    <!-- Script para inicializar el reproductor -->
+    Script para inicializar el reproductor
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (flvjs.isSupported()) {
@@ -29,4 +29,33 @@
       });
     </script>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transmisión en Directo</title>
+
+    <!-- Incluye la biblioteca Video.js desde la CDN -->
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>
+</head>
+<body>
+
+    <!-- Agrega el reproductor de Video.js con la URL del stream RTMP -->
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
+        <source src="rtmp://localhost/live" type="rtmp/mp4" />
+        <!-- También puedes agregar formatos adicionales para la compatibilidad con otros navegadores -->
+        <!-- <source src="tu-otra-fuente-de-video.mp4" type="video/mp4" /> -->
+        Tu navegador no admite el tag de video.
+    </video>
+
+    <!-- Inicializa Video.js -->
+    <script>
+        var player = videojs('my-video');
+    </script>
+
+</body>
 </html>

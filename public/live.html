@@ -3,12 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Streaming</title>
+    <title>Live Stream</title>
+    <!-- Incluir la biblioteca flv.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
   </head>
   <body>
-    <video controls>
-      <source src="/live/streamKey" type="video/mp4" />
-      Tu navegador no admite la reproducción de video en HTML5.
-    </video>
+    <!-- Elemento de video -->
+    <video id="my-video" controls width="640" height="360"></video>
+
+    <!-- Script para inicializar el reproductor -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (flvjs.isSupported()) {
+          var videoElement = document.getElementById("my-video");
+          var flvPlayer = flvjs.createPlayer({
+            type: "rtmp",
+            url: "rtmp://localhost:1935/live", // Cambiar según tu configuración de RTMP
+          });
+          flvPlayer.attachMediaElement(videoElement);
+          flvPlayer.load();
+          flvPlayer.play();
+        } else {
+          console.error("FLV.js no es compatible en este navegador.");
+        }
+      });
+    </script>
   </body>
 </html>

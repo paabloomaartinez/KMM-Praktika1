@@ -1,2 +1,22 @@
 URL -> rtmp://localhost:1935/live
 KEY -> stream1
+
+Puede que la web no reciba los datos porque necesita Flash porque RTMP y Flash
+son de Adobe, pero Flash ya no está soportado en los navegadores.
+
+Existe otra opción en el navegador para recibir RTMP? Como un módulo o plugin que no sea Flash.
+
+He intentado usar RTSP en ves de RTMP pero no existe un módulo para Nginx.
+
+Muchos de los comandos que me dicen en internet para mirar son de Linux y no Windows.
+
+Hay una opción de hacer todo de live streaming con HLS o DASH, que son dinámicos.
+
+Estoy probando con HLS y me estoy dando cuenta de que sale un eror de CORS en la consola
+al intenat cargar el stream.
+
+Si intento enviarlo directamente con RTMP me salen otros dos error que dicen
+que el anvegador no puede entender RTMP directamente. ChatGPT me dice que
+haga la traducción en Nginx de RTMP a HLS. Me devuelve una fumada. Puede que
+sí que tenga que suar HLS o DASH al final de todo en el live.
+

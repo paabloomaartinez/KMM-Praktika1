@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -29,33 +29,4 @@
       });
     </script>
   </body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Transmisión en Directo</title>
-
-    <!-- Incluye la biblioteca Video.js desde la CDN -->
-    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>
-</head>
-<body>
-
-    <!-- Agrega el reproductor de Video.js con la URL del stream RTMP -->
-    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
-        <source src="rtmp://localhost/live" type="rtmp/mp4" />
-        <!-- También puedes agregar formatos adicionales para la compatibilidad con otros navegadores -->
-        <!-- <source src="tu-otra-fuente-de-video.mp4" type="video/mp4" /> -->
-        Tu navegador no admite el tag de video.
-    </video>
-
-    <!-- Inicializa Video.js -->
-    <script>
-        var player = videojs('my-video');
-    </script>
-
-</body>
 </html>

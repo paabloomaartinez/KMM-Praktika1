@@ -3,30 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Stream</title>
-    <!-- Incluir la biblioteca flv.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
+    <title>Streaming HLS</title>
   </head>
   <body>
-    <!-- Elemento de video -->
-    <video id="my-video" controls width="640" height="360"></video>
+    <video id="video" controls></video>
 
-    <!-- Script para inicializar el reproductor -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (flvjs.isSupported()) {
-          var videoElement = document.getElementById("my-video");
-          var flvPlayer = flvjs.createPlayer({
-            type: "rtmp",
-            url: "rtmp://localhost:1935/live", // Cambiar según tu configuración de RTMP
-          });
-          flvPlayer.attachMediaElement(videoElement);
-          flvPlayer.load();
-          flvPlayer.play();
-        } else {
-          console.error("FLV.js no es compatible en este navegador.");
-        }
-      });
+      if (Hls.isSupported()) {
+        const video = document.getElementById("video");
+        const hls = new Hls();
+
+        // URL del flujo HLS generado en el servidor
+        const hlsUrl = "http://localhost:3000/hls/live/index.m3u8";
+
+        hls.loadSource(hlsUrl);
+        hls.attachMedia(video);
+      }
     </script>
   </body>
 </html>

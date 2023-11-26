@@ -6,77 +6,77 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-const NodeMediaServer = require('node-media-server');
+// const NodeMediaServer = require('node-media-server');
 
-const config = {
-    rtmp: {
-        port: 1935,
-        chunk_size: 60000,
-        gop_cache: true,
-        ping: 30,
-        ping_timeout: 60
-    },
-    http: {
-        port: 8000,
-        mediaroot: './media',
-        allow_origin: '*'
-    },
-    trans: {
-        ffmpeg: 'C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe',
-        tasks: [
-            {
-                app: 'live',
-                hls: true,
-                hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
-                hlsKeep: true, // to prevent hls file delete after end the stream
-            }
-        ]
-    }
-};
+// const config = {
+//     rtmp: {
+//         port: 1935,
+//         chunk_size: 60000,
+//         gop_cache: true,
+//         ping: 30,
+//         ping_timeout: 60
+//     },
+//     http: {
+//         port: 8000,
+//         mediaroot: './media',
+//         allow_origin: '*'
+//     },
+//     trans: {
+//         ffmpeg: 'C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe',
+//         tasks: [
+//             {
+//                 app: 'live',
+//                 hls: true,
+//                 hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
+//                 hlsKeep: true, // to prevent hls file delete after end the stream
+//             }
+//         ]
+//     }
+// };
 
-const nms = new NodeMediaServer(config);
+// const nms = new NodeMediaServer(config);
 
-nms.run();
+// nms.run();
 
-// Manejo de conexiones WebSocket
-nms.on('preConnect', (id, args) => {
-    console.log('[Node Media Server] WebSocket conectado:', id);
-});
+// // Manejo de conexiones WebSocket
+// nms.on('preConnect', (id, args) => {
+//     console.log('[Node Media Server] WebSocket conectado:', id);
+// });
 
-nms.on('doneConnect', (id, args) => {
-    console.log('[Node Media Server] WebSocket desconectado:', id);
-});
+// nms.on('doneConnect', (id, args) => {
+//     console.log('[Node Media Server] WebSocket desconectado:', id);
+// });
 
-// Emitir mensajes a través de WebSocket cuando un nuevo stream HLS está disponible
-nms.on('postConnect', (id, args) => {
-    if (nms.wsServer && nms.wsServer.connections) {
-        const streamPath = args.streamPath;
-        nms.wsServer.connections.forEach((connection) => {
-            connection.send(JSON.stringify({ action: 'hlsStream', streamPath }));
-        });
-    }
-});
+// // Emitir mensajes a través de WebSocket cuando un nuevo stream HLS está disponible
+// nms.on('postConnect', (id, args) => {
+//     if (nms.wsServer && nms.wsServer.connections) {
+//         const streamPath = args.streamPath;
+//         nms.wsServer.connections.forEach((connection) => {
+//             connection.send(JSON.stringify({ action: 'hlsStream', streamPath }));
+//         });
+//     }
+// });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/hls/:streamName/index.m3u8', (req, res) => {
-    const streamName = req.params.streamName;
-    const hlsStreamPath = `${streamName}/index.m3u8`;
+// app.get('/hls/:streamName/index.m3u8', (req, res) => {
+//     const streamName = req.params.streamName;
+//     const hlsStreamPath = `${streamName}/index.m3u8`;
 
-    console.log(`Este es el hlsStreamPath: ${hlsStreamPath}`)
+//     console.log(`Este es el hlsStreamPath: ${hlsStreamPath}`)
 
-    res.writeHead(200, {
-        'Content-Type': 'application/vnd.apple.mpegurl',
-        'Cache-Control': 'no-cache',
-        'Access-Control-Allow-Origin': '*',
-    });
+//     res.writeHead(200, {
+//         'Content-Type': 'application/vnd.apple.mpegurl',
+//         'Cache-Control': 'no-cache',
+//         'Access-Control-Allow-Origin': '*',
+//     });
 
-    res.write('#EXTM3U\n');
-    res.write('#EXT-X-VERSION:3\n');
-    res.write(`#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=640x360,CODECS="avc1.64001e,mp4a.40.2"\n`);
-    res.write(`${hlsStreamPath}\n`);
-    res.end();
-});
+//     res.write('#EXTM3U\n');
+//     res.write('#EXT-X-VERSION:3\n');
+//     res.write(`#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=640x360,CODECS="avc1.64001e,mp4a.40.2"\n`);
+//     res.write(`${hlsStreamPath}\n`);
+//     res.end();
+// });
 
 // nms.on('postPublish', (id, streamPath, args) => {
 //     // Transcodificación de RTMP a HLS usando ffmpeg

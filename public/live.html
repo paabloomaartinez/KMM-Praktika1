@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reproductor de Video HLS</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Player - Live</title>
+
+    <link href="https://vjs.zencdn.net/7.5.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.5.4/video.js"></script>
   </head>
   <body>
-    <video id="videoPlayer" controls width="640" height="360"></video>
-
+    <video
+      id="player"
+      class="video-js vjs-default-skin"
+      width="800"
+      height="440"
+      controls
+      preload="none"
+    >
+      <source
+        src="http://localhost:8080/live/stream.m3u8"
+        type="application/x-mpegURL"
+      />
+    </video>
     <script>
-      const videoPlayer = document.getElementById("videoPlayer");
-
-      const socket = new WebSocket("ws://localhost:8000");
-
-      socket.addEventListener("open", (event) => {
-        console.log("Conexión establecida con el servidor");
-      });
-
-      socket.addEventListener("message", (event) => {
-        const data = JSON.parse(event.data);
-        console.log(`El streamPath que recibo: ${data.streamPath}`);
-
-        if (data.action === "hlsStream") {
-          const hlsStreamUrl = `http://localhost:8000/${data.streamPath}/index.m3u8`;
-          videoPlayer.src = hlsStreamUrl;
-          videoPlayer.play();
-        }
-      });
-
-      socket.addEventListener("close", (event) => {
-        console.log("Conexión cerrada con el servidor");
-      });
-
-      socket.addEventListener("error", (event) => {
-        console.error("Error de conexión:", event);
-      });
+      var player = videojs("#player");
     </script>
   </body>
 </html>

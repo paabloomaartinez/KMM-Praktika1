@@ -13,12 +13,70 @@ const config = {
         port: 1935,
         chunk_size: 60000,
         gop_cache: true,
-        ping: 60,
-        ping_timeout: 30,
+        ping: 30,
+        ping_timeout: 60
     },
+    http: {
+        port: 8000,
+        mediaroot: './media',
+        allow_origin: '*'
+    },
+    trans: {
+        ffmpeg: 'C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe',
+        tasks: [
+            {
+                app: 'live',
+                hls: true,
+                hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
+                hlsKeep: true, // to prevent hls file delete after end the stream
+            }
+        ]
+    }
 };
 
 const nms = new NodeMediaServer(config);
+
+nms.run();
+
+// Manejo de conexiones WebSocket
+nms.on('preConnect', (id, args) => {
+    console.log('[Node Media Server] WebSocket conectado:', id);
+});
+
+nms.on('doneConnect', (id, args) => {
+    console.log('[Node Media Server] WebSocket desconectado:', id);
+});
+
+// Emitir mensajes a través de WebSocket cuando un nuevo stream HLS está disponible
+nms.on('postConnect', (id, args) => {
+    if (nms.wsServer && nms.wsServer.connections) {
+        const streamPath = args.streamPath;
+        nms.wsServer.connections.forEach((connection) => {
+            connection.send(JSON.stringify({ action: 'hlsStream', streamPath }));
+        });
+    }
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/hls/:streamName/index.m3u8', (req, res) => {
+    const streamName = req.params.streamName;
+    const hlsStreamPath = `${streamName}/index.m3u8`;
+
+    console.log(`Este es el hlsStreamPath: ${hlsStreamPath}`)
+
+    res.writeHead(200, {
+        'Content-Type': 'application/vnd.apple.mpegurl',
+        'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*',
+    });
+
+    res.write('#EXTM3U\n');
+    res.write('#EXT-X-VERSION:3\n');
+    res.write(`#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=640x360,CODECS="avc1.64001e,mp4a.40.2"\n`);
+    res.write(`${hlsStreamPath}\n`);
+    res.end();
+});
 
 // nms.on('postPublish', (id, streamPath, args) => {
 //     // Transcodificación de RTMP a HLS usando ffmpeg
@@ -34,36 +92,34 @@ const nms = new NodeMediaServer(config);
 //         .run();
 // });
 
-nms.run();
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/hls/:streamName/index.m3u8', (req, res) => {
+// app.get('/hls/:streamName/index.m3u8', (req, res) => {
 
-    console.log("HA ENTRADO EN EL GET")
+//     console.log("HA ENTRADO EN EL GET")
 
-    const streamName = req.params.streamName;
-    const hlsStreamPath = `hls/${streamName}`;
+//     const streamName = req.params.streamName;
+//     const hlsStreamPath = `hls/${streamName}`;
 
-    // Configurar cabeceras HTTP para el flujo HLS
-    res.writeHead(200, {
-        'Content-Type': 'application/vnd.apple.mpegurl',
-        'Cache-Control': 'no-cache',
-        'Access-Control-Allow-Origin': '*',
-    });
+//     // Configurar cabeceras HTTP para el flujo HLS
+//     res.writeHead(200, {
+//         'Content-Type': 'application/vnd.apple.mpegurl',
+//         'Cache-Control': 'no-cache',
+//         'Access-Control-Allow-Origin': '*',
+//     });
 
 
 
-    // Ejecutar FFmpeg para generar el archivo M3U8 usando fluent-ffmpeg
-    ffmpeg(`rtmp://localhost:1935/${streamName}`)
-        .output(`${hlsStreamPath}/index.m3u8`)
-        .outputFormat('hls')
-        .on('error', (err) => {
-            console.error(`Error en la transcodificación: ${err.message}`);
-            res.status(500).send('Error en la transcodificación');
-        })
-        .pipe(res, { end: true });
-});
+//     // Ejecutar FFmpeg para generar el archivo M3U8 usando fluent-ffmpeg
+//     ffmpeg(`rtmp://localhost:1935/${streamName}`)
+//         .output(`${hlsStreamPath}/index.m3u8`)
+//         .outputFormat('hls')
+//         .on('error', (err) => {
+//             console.error(`Error en la transcodificación: ${err.message}`);
+//             res.status(500).send('Error en la transcodificación');
+//         })
+//         .pipe(res, { end: true });
+// });
 
 // Intento de hacerlo con HLS
 // const server = http.createServer(app);

@@ -1,25 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Streaming HLS</title>
+    <title>Reproductor de Video HLS</title>
   </head>
   <body>
-    <video id="video" controls></video>
+    <video id="videoPlayer" controls width="640" height="360"></video>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-      if (Hls.isSupported()) {
-        const video = document.getElementById("video");
-        const hls = new Hls();
+      const videoPlayer = document.getElementById("videoPlayer");
 
-        // URL del flujo HLS generado en el servidor
-        const hlsUrl = "http://localhost:3000/hls/live/index.m3u8";
+      const socket = new WebSocket("ws://localhost:8000");
 
-        hls.loadSource(hlsUrl);
-        hls.attachMedia(video);
-      }
+      socket.addEventListener("open", (event) => {
+        console.log("Conexión establecida con el servidor");
+      });
+
+      socket.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data);
+        console.log(`El streamPath que recibo: ${data.streamPath}`);
+
+        if (data.action === "hlsStream") {
+          const hlsStreamUrl = `http://localhost:8000/${data.streamPath}/index.m3u8`;
+          videoPlayer.src = hlsStreamUrl;
+          videoPlayer.play();
+        }
+      });
+
+      socket.addEventListener("close", (event) => {
+        console.log("Conexión cerrada con el servidor");
+      });
+
+      socket.addEventListener("error", (event) => {
+        console.error("Error de conexión:", event);
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,2 @@
+ffmpeg -i [input.mp4] -f dash -profile:v main -c:a aac -ar 48000 -map 0 -map 0 -map 0 -map 0 -map 0 -map 0 -map 0 -map 0 -map 0 -c:v:0 libx264 -b:v:0 500k -s:v:0 1280x720 -c:v:1 libx264 -b:v:1 300k -s:v:1 854x480 -c:v:2 libx264 -b:v:2 200k -s:v:2 640x360 -c:v:3 libx264 -b:v:3 150k -s:v:3 426x240 -c:v:4 libx264 -b:v:4 100k -s:v:4 320x170 -c:a aac -b:a 128k -dash 1 [out.mpd]
+

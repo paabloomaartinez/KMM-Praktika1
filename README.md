@@ -76,6 +76,6 @@
   5. Terminal batekin, praktikaren karpetaren barruan kokatu.
   6. Instalatu dependentzia guztiak: `npm install`
   7. Aplikazioa abiatu: `npm start`
-  8. Ngnix abiatu.
+  8. Ngnix exekutatu.
   9. OBS-an stream-a abiatu.
   10. Aplikazioa ejekutatzen da http://localhost:3000 url-an.

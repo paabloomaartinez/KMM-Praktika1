@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video On Demand</title>
+    <title>Adaptive Streaming</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.5.0/controls.min.css">
     <style>
         body {
@@ -33,19 +33,6 @@
             background-color: #0056b3;
         }
 
-        .video-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        video {
-            margin-top: 10px;
-            width: 100%; /* Hacer que el video ocupe todo el ancho del contenedor */
-            height: auto; /* Ajustar la altura automáticamente */
-        }
-
         #backButton {
             position: absolute;
             top: 10px;
@@ -60,15 +47,32 @@
             transition: background-color 0.3s ease;
             font-size: 18px;
         }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        [data-shaka-player-container] {
+            max-width: 640px;
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <button id="backButton" onclick="goBack()">Back</button>
     
     <h1>Video On Demand</h1>
-
+    <h2>Adaptive Streaming</h2>
+    
     <div class="video-container">
-        <h2>Adaptive Streaming</h2>
         <div data-shaka-player-container style="max-width: 640px;" data-shaka-player-cast-receiver-id="07AEE832">
             <video autoplay data-shaka-player id="video"></video>
         </div>

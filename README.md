@@ -70,7 +70,7 @@
 ## Aplikazioa exekutatu
 
   1. [Praktika](https://github.com/paabloomaartinez/KMM-Praktika1) GitHub-etik zure ordenagailura deskargatu/klonatu.
-  2. [Esteka honetatik](https://drive.google.com/file/d/1hS1zaVo7MBBlKfYqd7raKJRTi2T92Hi1/view?usp=sharing) bideoa deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/videos/` 
+  2. [Esteka honetatik](https://drive.google.com/file/d/1l91vRJbFQSEpvu28jggjGseGHWlF2ow_/view?usp=sharing) bideoa deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/videos/` 
   3. [Esteka honetatik](https://drive.google.com/file/d/1XQNf_bIi2oMC0bq4-5aTMOYQ1KX8q-mu/view?usp=sharing) irudia deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/images/`
   4. [Esteka honetatik](https://drive.google.com/drive/folders/19OX8W-KO-GUZKEO1iOkTSGtZkW0odAO3?usp=sharing) karpeta deskargatu, deskonprimitu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/`
   5. Terminal batekin, praktikaren karpetaren barruan kokatu.

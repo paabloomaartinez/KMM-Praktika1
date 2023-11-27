@@ -70,12 +70,10 @@
 ## Aplikazioa exekutatu
 
   1. [Praktika](https://github.com/paabloomaartinez/KMM-Praktika1) GitHub-etik zure ordenagailura deskargatu/klonatu.
-  2. [Esteka honetatik](https://drive.google.com/file/d/1iFHKLGBInefesSOeEPlXVvBvqE3NWscl/view?usp=sharing) bideoa deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/videos/` 
-  3. [Esteka honetatik](https://drive.google.com/file/d/1mq9jojPmkyEOT0NGe4Q4b2wGM6XLGaT3/view?usp=drive_link) irudia deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/images/`
-  4. [Esteka honetatik](https://drive.google.com/drive/folders/1Z2W1qtITEIvuV9MQWcg5Vvn2AwmF1_TM?usp=drive_link) karpeta deskargatu, deskonprimitu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/`
-  5. Terminal batekin, praktikaren karpetaren barruan kokatu.
-  6. Instalatu dependentzia guztiak: `npm install`
-  7. Aplikazioa abiatu: `npm start`
-  8. Ngnix exekutatu.
-  9. OBS-an stream-a abiatu.
-  10. Aplikazioa http://localhost:3000 url-an eskuragarri dago.
+  2. [Esteka honetatik](https://drive.google.com/drive/folders/1nnLPXQXaDtlQfPFiuabRDUBabl3aoRk6?usp=sharing) _media_ karpeta deskargatu, deskonprimitu eta `KMM-PRAKTIKA1/` karpeta barruan txertatu.
+  3. Terminal batekin, praktikaren karpetaren barruan kokatu.
+  4. Instalatu dependentzia guztiak: `npm install`
+  5. Aplikazioa abiatu: `npm start`
+  6. Ngnix exekutatu.
+  7. OBS-an stream-a abiatu.
+  8.  Aplikazioa http://localhost:3000 url-an eskuragarri dago.

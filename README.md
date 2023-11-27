@@ -76,4 +76,4 @@
   5. Aplikazioa abiatu: `npm start`
   6. Ngnix exekutatu.
   7. OBS-an stream-a abiatu.
-  8.  Aplikazioa http://localhost:3000 url-an eskuragarri dago.
+  8.  Aplikazioa http://localhost:3000 URL-an eskuragarri dago.

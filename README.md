@@ -62,20 +62,20 @@
 
 1. [OBS](https://obsproject.com/es/download) (Open Broadcaster Software) aplikazioa deskargatu.
 2. Aplikazioa ireki eta _Emisio konfigurazioan_:
-   1. Pertsonalizatua 
+   1. Serbitzuan, _Pertsonalizatua_ aukeratu.
+   2. Zerbitzarian, rtmp://localhost/live jarri.
+   3. Pasahitza bezala, _stream_ hitza jarri.
+   4. Konfigurazio berria gorde (_Aplikatu_ botoia sakatuz).
 
 ## Aplikazioa exekutatu
 
-- Aplikazioa exekutatzeko, jarraitu urrats hauek:
-  1. Biltegia GitHub-etik zure ordenagailura deskargatu/klonatu.
-  2. Instalatu bulego guztiak: `npm install`
-  3. [Esteka honetatik](https://drive.google.com/file/d/1hS1zaVo7MBBlKfYqd7raKJRTi2T92Hi1/view?usp=sharing) bideoa deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/videos` 
-  4. [Esteka honetatik](https://drive.google.com/file/d/1XQNf_bIi2oMC0bq4-5aTMOYQ1KX8q-mu/view?usp=sharing) irudia deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/images`
-  5. [Esteka honetatik](url) karpeta deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/`
-  6. 
-  7.  
-  8.  Con otro, entre dentro de la carpeta "server": `cd ./ChatGPT/server`
-  9.  Installe todas las dependencias: `npm install`
-  10. Ejecute el servidor: `npm run dev`
-  11. El servidor se ejecuta en `http://localhost:5000`.
-  12. La aplicación se espera que la conexión a la BD se haga en el puerto `27017`.
+  1. [Biltegia](https://github.com/paabloomaartinez/KMM-Praktika1) GitHub-etik zure ordenagailura deskargatu/klonatu.
+  2. [Esteka honetatik](https://drive.google.com/file/d/1hS1zaVo7MBBlKfYqd7raKJRTi2T92Hi1/view?usp=sharing) bideoa deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/videos` 
+  3. [Esteka honetatik](https://drive.google.com/file/d/1XQNf_bIi2oMC0bq4-5aTMOYQ1KX8q-mu/view?usp=sharing) irudia deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/images`
+  4. [Esteka honetatik](url) karpeta deskargatu eta txertatu proiektuaren direktorio honetan: `KMM_PRAKTIKA1/media/`
+  5. Terminal batekin, praktikaren karpetaren barruan kokatu.
+  6. Instalatu bulego guztiak: `npm install`
+  7. Aplikazioa abiatu: `npm start`
+  8. Ngnix abiatu.
+  9. OBS-an stream-a abiatu.
+  10. Aplikazioa ejekutatzen da http://localhost:3000 url-an.
